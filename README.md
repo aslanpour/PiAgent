@@ -1,2 +1,2 @@
 # AdaptiveEdge
-Self Adaptive Edge Platform
+A Self Adaptive Cloud Fog and Edge Platform 
