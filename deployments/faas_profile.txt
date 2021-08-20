@@ -1,0 +1,32 @@
+kind: Profile
+apiVersion: openfaas.com/v1
+metadata:
+  name: profile1
+  namespace: openfaas
+spec:
+  #replicas: 3
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+        - matchExpressions:
+          - key: battery
+            operator: Gt
+            values:
+            - "50"
+     #podAntiAffinity:
+       #requiredDuringSchedulingIgnoredDuringExecution:
+         #- labelSelector:
+              #matchExpressions:
+              #- key: app
+                #operator: In
+                #values:
+                #- nginx
+            #topologyKey: "kubernetes.io/hostname" 
+     #tolerations:
+     #- key: "taint1"
+       #operator: "Equal"
+       #value: "value1"
+       #effect: "NoExecute"
+       #tolerationSeconds: 60
+      #nodeName: monitor

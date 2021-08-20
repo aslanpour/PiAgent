@@ -1,0 +1,31 @@
+version: 1.0
+provider:
+  name: openfaas
+  gateway: http://127.0.0.1:31112
+functions:
+  monitor:
+    lang: monitor
+    handler: ./monitor
+    image: ${DOCKER_USER:-aslanpour/monitor:latest}
+    labels:
+      com.openfaas.scale.min: 0
+      com.openfaas.scale.max: 4
+      com.openfaas.scale.factor: 2
+      com.openfaas.scale.zero: true
+    limits:
+      memory: 40Mi
+      cpu: 1000m
+    requests:
+      memory: 20Mi
+      cpu: 100m 
+    constraints: [ "role=planner" ]
+    annotations:
+      com.openfaas.profile: my-profile
+      com.openfaas.queue: queue-worker-monitor
+      linkerd.io/inject: disabled
+    environment:
+      write_timeout: 3m
+      read_timeout: 3m
+      exec_timeout: 3m
+      handler_wait_duration: 60s
+      write_debug: true
