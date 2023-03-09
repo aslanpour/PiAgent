@@ -3587,11 +3587,7 @@ def battery_sim():
             #effect
             raw_input = renewable_inputs[renewable_index]
             #calculate the share for this interval
-            #optimal
-            optimal=1
-            if node_name == "w4" or node_name=="w5":
-                optimal = 1.15
-            renewable_input = (raw_input/(600/interval)) * optimal
+
         else:
             logger.error('unknown renewable_type  --> ' + str(renewable_type))
             
